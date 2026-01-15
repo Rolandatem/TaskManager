@@ -1,0 +1,93 @@
+[
+  {
+    "Text": "System Tools",
+    "IsParent": true,
+    "Children": [
+      {
+        "Text": "SignalR Server",
+        "Children": [
+          {
+            "Text": "Close Connection",
+            "Command": "CloseSignalRConnectionCommand"
+          },
+          {
+            "Text": "Open Connection",
+            "Command": "OpenSignalRConnectionCommand"
+          }
+        ]
+      },
+      {
+        "Text": "Check for Updates",
+        "Command": "CheckForUpdatesCommand"
+      }
+    ]
+  },
+  {
+    "Text": "Monitors",
+    "IsParent": true,
+    "Children": [
+      {
+        "Text": "Live Monitor",
+        "Command": "OpenLiveMonitorCommand"
+      },
+      {
+        "Text": "DB Audit Log Monitor",
+        "Command": "OpenDBAuditLogMonitorCommand"
+      },
+      {
+        "Text": "DB Error Log Monitor",
+        "Command": "OpenDBErrorLogMonitorCommand"
+      }
+    ]
+  },
+  {
+    "Text": "Tools",
+    "IsParent": true,
+    "Children": [
+      {
+        "Text": "Task Recipe Queue",
+        "Children": [
+          {
+            "Text": "Task Recipe Queue List",
+            "Command": "OpenTaskRecipeQueueListCommand"
+          },
+          {
+            "Text": "Add Task Recipe Queue Request",
+            "Command": "OpenAddTaskRecipeQueueRequestCommand"
+          }
+        ]
+      },
+      {
+        "Text": "Task Scheduler",
+        "Children": [
+          {
+            "Text": "Current Schedule",
+            "Command": "OpenTaskSchedulerCurrentScheduleCommand"
+          },
+          {
+            "Text": "Add New Scheduled Task",
+            "Command": "OpenAddNewTaskScheduleCommand"
+          }
+        ]
+      },
+      {
+        "Text": "Task Recipe Type",
+        "Children": [
+          {
+            "Text": "Task Recipe Type List",
+            "Command": "OpenTaskRecipeTypeListCommand"
+          },
+          {
+            "Text": "Add New Task Recipe Type",
+            "Command": "OpenAddNewTaskRecipeTypeCommand"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Text": "Exit",
+    "IsParent": true,
+    "Command": "ExitAppCommand"
+  }
+]

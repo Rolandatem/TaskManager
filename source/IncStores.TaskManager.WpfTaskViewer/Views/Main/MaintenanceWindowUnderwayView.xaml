@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.Main.MaintenanceWindowUnderwayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.Main"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}"
+             d:DataContext="{d:DesignInstance Type=vm:MaintenanceWindowUnderwayViewModelDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="MaintenanceWindowUnderway.Foreground" Color="{StaticResource Global.Text.Color}" />
+        <SolidColorBrush x:Key="MaintenanceWindowUnderway.TimeFrame.Foreground" Color="{StaticResource Global.SecondaryAccent.Color}" />
+    </UserControl.Resources>
+
+    <cc:ContentSection HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+            <TextBlock Text="The TaskManager is currently under scheduled maintenance. The TaskViewer will attempt to reconnect at the reported time."
+                   Foreground="{StaticResource MaintenanceWindowUnderway.Foreground}"
+                   FontSize="24px"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"/>
+
+            <TextBlock Margin="0,10,0,0" Foreground="{StaticResource MaintenanceWindowUnderway.Foreground}" FontSize="20px" TextAlignment="Center">
+            <Run Text="Maintenance Window Timeframe: " />
+            <Run Text="{Binding StartTime, StringFormat=hh:mm:ss tt}" Foreground="{StaticResource MaintenanceWindowUnderway.TimeFrame.Foreground}" />
+            <Run Text="-" />
+            <Run Text="{Binding EndTime, StringFormat=hh:mm:ss tt}" Foreground="{StaticResource MaintenanceWindowUnderway.TimeFrame.Foreground}" />
+            </TextBlock>
+
+            <TextBlock Margin="0,20,0,0" 
+                   Text="Time Remaining:" 
+                   Foreground="{StaticResource MaintenanceWindowUnderway.Foreground}"
+                   FontSize="20px"
+                   TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource MaintenanceWindowUnderway.TimeFrame.Foreground}"
+                   TextAlignment="Center"
+                   FontSize="20px">
+            <Run Text="{Binding TimeRemaining.Hours, Mode=OneWay, StringFormat={}{0:00}:}" /><!--
+            --><Run Text="{Binding TimeRemaining.Minutes, Mode=OneWay, StringFormat={}{0:00}:}" /><!--
+            --><Run Text="{Binding TimeRemaining.Seconds, Mode=OneWay, StringFormat={}{0:00}}" />
+            </TextBlock>
+        </StackPanel>
+    </cc:ContentSection>
+    
+</UserControl>

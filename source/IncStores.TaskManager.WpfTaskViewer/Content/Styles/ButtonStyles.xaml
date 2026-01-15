@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="Global.Button.Background" Color="{StaticResource Global.SecondaryAccent.Color}" />
+
+    <!-- COMMON GLOBAL -->
+    <Style TargetType="Button">
+        <Setter Property="MinWidth" Value="75" />
+        <Setter Property="Height" Value="25" />
+        <Setter Property="Background" Value="{StaticResource Global.Button.Background}" />
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

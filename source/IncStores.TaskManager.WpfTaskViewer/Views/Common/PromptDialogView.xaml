@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.Common.PromptDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.Common"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=vm:PromptDialogViewModelDesign, IsDesignTimeCreatable=True}"
+             FontFamily="{StaticResource Roboto}"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <Style x:Key="dialogBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Width" Value="500" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+            <Setter Property="Padding" Value="10" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}" Opacity=".40" />
+        </Grid.Background>
+
+        <cc:ContentSection HorizontalAlignment="Center" VerticalAlignment="Center" Width="500">
+            <StackPanel>
+                <cc:ViewTitle Title="Prompt" />
+
+                <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0">
+                    <TextBlock Text="{Binding Prompt}" TextWrapping="Wrap" />
+                </ScrollViewer>
+
+                <StackPanel Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="{Binding YesText}" Command="{Binding YesCommand}" />
+                    <Button Content="{Binding NoText}" Command="{Binding NoCommand}" Margin="10,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </cc:ContentSection>
+    </Grid>
+</UserControl>

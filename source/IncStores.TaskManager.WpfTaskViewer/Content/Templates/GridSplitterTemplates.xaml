@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls">
+    
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="GridSplitter.Base.Background" Color="{StaticResource Global.Accent.Color}" />
+
+    <!-- HORIZONTAL GRIP GRID SPLITTER -->
+    <ControlTemplate x:Key="BaseHorizontalGripGridSplitter" TargetType="{x:Type cc:GripGridSplitter}">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" 
+                CornerRadius="{TemplateBinding CornerRadius}" Margin="{TemplateBinding Margin}">
+            <Image Source="/Content/UI/GripHorizontal.png" Stretch="None"></Image>
+        </Border>
+    </ControlTemplate>
+    
+    <!-- VERTICAL GRID GRID SPLITTER -->
+    <ControlTemplate x:Key="BaseVerticalGripGridSpliter" TargetType="{x:Type cc:GripGridSplitter}">
+        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}"
+                CornerRadius="{TemplateBinding CornerRadius}" Margin="{TemplateBinding Margin}">
+            <Image Source="/Content/UI/GripVertical.png" Stretch="None"></Image>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="BaseGridSplitterStyle" TargetType="{x:Type cc:GripGridSplitter}">
+        <Setter Property="Background" Value="{StaticResource GridSplitter.Base.Background}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="3" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect ShadowDepth="3" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HorizontalGripGridSplitter" TargetType="{x:Type cc:GripGridSplitter}" BasedOn="{StaticResource BaseGridSplitterStyle}">
+        <Setter Property="Template" Value="{StaticResource BaseHorizontalGripGridSplitter}" />
+    </Style>
+
+    <Style x:Key="VerticalGripGridSplitter" TargetType="{x:Type cc:GripGridSplitter}" BasedOn="{StaticResource BaseGridSplitterStyle}">
+        <Setter Property="Template" Value="{StaticResource BaseVerticalGripGridSpliter}" />
+    </Style>
+
+    <Style TargetType="{x:Type cc:GripGridSplitter}" BasedOn="{StaticResource BaseGridSplitterStyle}" />
+</ResourceDictionary>

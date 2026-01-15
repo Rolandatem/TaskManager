@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.Monitors.DBErrorLogMonitorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.Monitors"
+             xmlns:converters="clr-namespace:IncStores.TaskManager.WpfTaskViewer.Converters"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             xmlns:xtcd="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" 
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}"
+             d:DataContext="{d:DesignInstance Type=vm:DBErrorLogMonitorViewModelDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <converters:LoggerNameShortenerConverter x:Key="loggerNameShortenerConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <cc:ViewTitle Grid.Row="0" Title="DB Error Log Monitor" />
+
+        <cc:ContentSection Grid.Row="1" Header="Search" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+
+                <StackPanel>
+                    <TextBlock Text="Start Date:" />
+                    <xtcd:DateTimePicker Value="{Binding DateRangeStart}" Format="Custom" FormatString="MM/dd/yyyy hh:mm:ss tt" Height="25" />
+                </StackPanel>
+
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="End Date:" />
+                    <xtcd:DateTimePicker Value="{Binding DateRangeEnd}" Format="Custom" FormatString="MM/dd/yyyy hh:mm:ss tt" Height="25" />
+                </StackPanel>
+
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="Environment:" />
+                    <TextBox Text="{Binding Environment}" Height="25" />
+                </StackPanel>
+
+                <Button Content="Refresh" Command="{Binding RefreshErrorLogsCommand}" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+
+            </StackPanel>
+        </cc:ContentSection>
+
+        <cc:ContentSection Grid.Row="2" Header="Filter" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <StackPanel VerticalAlignment="Bottom">
+                    <TextBlock Text="Logger:" />
+                    <ComboBox ItemsSource="{Binding Loggers}" SelectedItem="{Binding SelectedLogger}" Height="25" Margin="0,3,0,0" />
+                </StackPanel>
+
+                <CheckBox Content="Information" IsChecked="{Binding ShowInformation}" Margin="15,0,0,0" VerticalAlignment="Bottom" />
+                <CheckBox Content="Debug" IsChecked="{Binding ShowDebug}" Margin="5,0,0,0" VerticalAlignment="Bottom" />
+                <CheckBox Content="Warning" IsChecked="{Binding ShowWarning}" Margin="5,0,0,0" VerticalAlignment="Bottom" />
+                <CheckBox Content="Critical" IsChecked="{Binding ShowCritical}" Margin="5,0,0,0" VerticalAlignment="Bottom" />
+                <CheckBox Content="Error" IsChecked="{Binding ShowError}" Margin="5,0,0,0" VerticalAlignment="Bottom" />
+            </StackPanel>
+        </cc:ContentSection>
+
+        <cc:ContentSection Grid.Row="3" Margin="0,10,0,0">
+            <DataGrid Grid.Row="3" ItemsSource="{Binding FilteredTaskManagerLogs}" HorizontalScrollBarVisibility="Auto" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" HeadersVisibility="Column" Margin="0,10,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}" />
+                    <DataGridTextColumn Header="Level" Binding="{Binding Level}" />
+                    <DataGridTextColumn Header="Environment" Binding="{Binding Environment}" />
+                    <DataGridTextColumn Header="Logger" Binding="{Binding Logger, Converter={StaticResource loggerNameShortenerConverter}}" />
+                    <DataGridTextColumn Header="Message" Binding="{Binding Message}" />
+                    <DataGridTextColumn Header="Exception" Binding="{Binding Exception}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </cc:ContentSection>
+
+    </Grid>
+</UserControl>

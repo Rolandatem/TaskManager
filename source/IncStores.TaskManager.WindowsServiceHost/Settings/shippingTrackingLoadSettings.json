@@ -1,0 +1,45 @@
+{
+  "ShippingTrackingLoadSettings": {
+    "RnLTrackingSettings": {
+      "ConnectionInfo": {
+        "ServerName": "imap.gmail.com",
+        "Port": 993,
+        "Username": "redacted",
+        "Password": "redacted"
+      },
+      "FromEmailAddress": "reports@rlcarriers.com",
+      "SubjectStartsWith": "R&L CARRIERS - BILL2 - INC204",
+      "TrackingFileExtension": "csv",
+      "KeepProcessedEmails": false,
+      "SaveAllTrackingFiles": false,
+      "FirstStopStatus": []
+    },
+    "YRCTrackingSettings": {
+      "ConnectionInfo": {
+        "ServerName": "imap.gmail.com",
+        "Port": 993,
+        "Username": "redacted",
+        "Password": "redacted"
+      },
+      "FromEmailAddress": "AutomatedEmail@yrc.com",
+      "SubjectStartsWith": "YRC, INC.: Daily yrc tracking for automation",
+      "TrackingFileExtension": "csv",
+      "KeepProcessedEmails": false,
+      "SaveAllTrackingFiles": false,
+      "LabelCreatedStatus": [
+        "LDG"
+      ]
+    },
+    "FedExTrackingSettings": {
+      "ConnectionInfo": {
+        "ServerName": "prod.ec.fedex.com",
+        "Port": 60022,
+        "Username": "redacted",
+        "Password": "redacted"
+      },
+      "FolderName": "INSIGHTCSV",
+      "SaveAllTrackingFiles": false,
+      "FirstStopStatus": []
+    }
+  }
+}

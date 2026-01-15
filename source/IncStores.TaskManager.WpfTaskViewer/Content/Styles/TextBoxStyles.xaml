@@ -1,0 +1,27 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="Global.Textbox.Background" Color="{StaticResource Global.Main.Light.Color}" />
+    <SolidColorBrush x:Key="Global.Textbox.Foreground" Color="{StaticResource Global.TextInput.Color}" />
+
+    <!-- COMMON GLOBAL -->
+    <Style TargetType="TextBox">
+        <Setter Property="Height" Value="25" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5,0,0,0" />
+        <Setter Property="Foreground" Value="{StaticResource Global.Textbox.Foreground}" />
+        <Setter Property="Background" Value="{StaticResource Global.Textbox.Background}" />
+        <!--<Setter Property="Template" Value="{DynamicResource TextboxGlobalTemplate}" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="{StaticResource Global.TextInput.Border}" Background="{StaticResource Global.Textbox.Background}">
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+</ResourceDictionary>

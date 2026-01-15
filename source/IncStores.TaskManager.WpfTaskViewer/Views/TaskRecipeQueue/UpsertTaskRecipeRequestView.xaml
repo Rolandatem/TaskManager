@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.TaskRecipeQueue.UpsertTaskRecipeRequestView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.TaskRecipeQueue"
+             xmlns:extended="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000"
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}"
+             d:DataContext="{d:DesignInstance Type=vm:UpsertTaskRecipeRequestViewModelDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="UpsertTaskRecipeQueue.RequiredField.Foreground" Color="Red" />
+        <SolidColorBrush x:Key="UpsertTaskRecipeQueue.TaskRecipeId.Foreground" Color="{StaticResource Global.SecondaryAccent.Color}" />
+    </UserControl.Resources>
+
+    <cc:ContentSection HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+
+            <!-- TITLE -->
+            <cc:ViewTitle>
+                <cc:ViewTitle.Style>
+                    <Style TargetType="{x:Type cc:ViewTitle}">
+                        <Setter Property="Title" Value="Edit Task Recipe Queue Request" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ID}" Value="{x:Null}">
+                                <Setter Property="Title" Value="New Task Recipe Queue Request" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </cc:ViewTitle.Style>
+            </cc:ViewTitle>
+
+            <!-- ID -->
+            <TextBlock Margin="0,10,0,0">
+                <Run Text="ID: " />
+                <Run Foreground="{StaticResource UpsertTaskRecipeQueue.TaskRecipeId.Foreground}">
+                    <Run.Style>
+                        <Style TargetType="{x:Type Run}">
+                            <Setter Property="Text" Value="{Binding ID, Mode=OneWay}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ID}" Value="{x:Null}">
+                                    <Setter Property="Text" Value="New" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Run.Style>
+                </Run>
+            </TextBlock>
+
+            <!-- RECIPE TYPE AND STATUS -->
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <StackPanel>
+                    <TextBlock>
+                        <Run Text="*" Foreground="{StaticResource UpsertTaskRecipeQueue.RequiredField.Foreground}" /><!--
+                        --><Run Text="Recipe Type:" />
+                    </TextBlock>
+                    <ComboBox ItemsSource="{Binding RecipeTypes}" SelectedItem="{Binding SelectedRecipeType}" DisplayMemberPath="StringKey" MinWidth="100" />
+                </StackPanel>
+
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock>
+                        <Run Text="*" Foreground="{StaticResource UpsertTaskRecipeQueue.RequiredField.Foreground}" /><!--
+                        --><Run Text="Status Type:" />
+                    </TextBlock>
+                    <ComboBox ItemsSource="{Binding StatusTypes}" SelectedItem="{Binding SelectedStatusType}" DisplayMemberPath="StringKey" MinWidth="100" />
+                </StackPanel>
+            </StackPanel>
+
+            <!-- RECIPE DATA -->
+            <TextBlock Text="Recipe Data:" Margin="0,10,0,0" />
+            <TextBox Text="{Binding RecipeData}" Margin="0,3,0,0" Padding="5" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" Width="400" Height="100" VerticalContentAlignment="Top" />
+
+            <!-- START DATE AND BUTTONS -->
+            <Grid Margin="0,10,0,0">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <TextBlock Text="Start Date:" />
+                    <extended:DateTimePicker Value="{Binding StartDate}" Format="Custom" FormatString="MM/dd/yyyy hh:mm:ss tt" />
+                </StackPanel>
+
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Content="SAVE" Command="{Binding SaveTaskRecipeRequestCommand}" />
+                    <Button Content="CLOSE" Command="{Binding CloseCommand}" Margin="5,0,0,0" />
+                </StackPanel>
+            </Grid>
+
+        </StackPanel>
+    </cc:ContentSection>
+
+</UserControl>

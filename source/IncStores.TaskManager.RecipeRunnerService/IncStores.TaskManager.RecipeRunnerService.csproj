@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Company>IncStores</Company>
+    <Version>5.0.0</Version>
+    <Description>The main library that handles and executes the recipes for the TaskManager.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Incstores.Notification.Abstractions" Version="2.0.1" />
+    <PackageReference Include="IncStores.TaskManager.Core.Abstractions" Version="5.0.3" />
+    <PackageReference Include="IncStores.TaskManager.DataLayer" Version="5.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+    <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+  </ItemGroup>
+
+</Project>

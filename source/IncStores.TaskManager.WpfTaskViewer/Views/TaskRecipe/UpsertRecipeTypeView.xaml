@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.TaskRecipe.UpsertRecipeTypeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.TaskRecipe"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="584" d:DesignWidth="1000" 
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}"
+             d:DataContext="{d:DesignInstance Type=vm:UpsertRecipeTypeViewModelDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="UpsertRecipeType.RequiredField.Foreground" Color="Red" />
+        <SolidColorBrush x:Key="UpsertRecipeType.RecipeTypeID.Foreground" Color="{StaticResource Global.SecondaryAccent.Color}" />
+    </UserControl.Resources>
+
+    <cc:ContentSection Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- TITLE -->
+            <cc:ViewTitle Grid.Row="0">
+                <cc:ViewTitle.Style>
+                    <Style TargetType="{x:Type cc:ViewTitle}">
+                        <Setter Property="Title" Value="Edit Recipe Type" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ID}" Value="{x:Null}">
+                                <Setter Property="Title" Value="New Recipe Type" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </cc:ViewTitle.Style>
+            </cc:ViewTitle>
+
+            <!-- ID, STRING KEY, AND NAME ROW -->
+            <Grid Grid.Row="1" Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- ID -->
+                <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center">
+                        <Run Text="*" Foreground="{StaticResource UpsertRecipeType.RequiredField.Foreground}" /><!--
+                        --><Run Text="ID:" />
+                </TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="{StaticResource UpsertRecipeType.RecipeTypeID.Foreground}">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Text" Value="{Binding UpsertRecipeType.ID}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding UpsertRecipeType.ID}" Value="0">
+                                    <Setter Property="Text" Value="New" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+                <!-- STRING KEY-->
+                <TextBlock Grid.Row="0" Grid.Column="2" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Run Text="*" Foreground="{StaticResource UpsertRecipeType.RequiredField.Foreground}" /><!--
+                        --><Run Text="String Key:" />
+                </TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="3" Margin="5,0,0,0" Text="{Binding UpsertRecipeType.StringKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- NAME-->
+                <TextBlock Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" Margin="0,5,0,0" HorizontalAlignment="Right">
+                        <Run Text="*" Foreground="{StaticResource UpsertRecipeType.RequiredField.Foreground}" /><!--
+                        --><Run Text="Name:" />
+                </TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="3" Margin="5,5,0,0" Text="{Binding UpsertRecipeType.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+            </Grid>
+
+            <!-- ISACTIVE -->
+            <CheckBox Grid.Row="2" Margin="0,10,0,0" Content="Is Active" IsChecked="{Binding UpsertRecipeType.IsActive}" HorizontalAlignment="Right" VerticalAlignment="Center" />
+
+            <!-- FAULT NOTIFICATIONS -->
+            <Grid Grid.Row="3" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Email Fault Notification List:" />
+                    <DataGrid ItemsSource="{Binding EmailList}" AutoGenerateColumns="False" Width="300" HeadersVisibility="Column" Margin="0,3,0,0" MaxHeight="200">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Value}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Text="SMS Fault Notification List:" />
+                    <DataGrid ItemsSource="{Binding SMSNotificationList}" AutoGenerateColumns="False" Width="200" HeadersVisibility="Column" Margin="0,3,0,0" MaxHeight="200">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Phone Number" Binding="{Binding PhoneNumber}" Width="*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Grid>
+
+            <!-- BUTTONS -->
+            <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+                <Button Content="Save" Command="{Binding SaveCommand}" />
+                <Button Content="Close" Command="{Binding CloseCommand}" Margin="5,0,0,0" />
+            </StackPanel>
+        </Grid>
+    </cc:ContentSection>
+
+</UserControl>

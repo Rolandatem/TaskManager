@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{CB454245-9EF7-45B4-81BB-AC240975EE47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{5802D1F5-B96B-4FEE-98B8-D3508D241938}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{0515C9D4-52CF-4A10-B88A-39A54EEA05C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncStores.TaskManager.RecipeRunnerService", "IncStores.TaskManager.RecipeRunnerService\IncStores.TaskManager.RecipeRunnerService.csproj", "{C933F0E5-54FA-45B8-BDFF-242F0D16D711}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncStores.TaskManager.WindowsServiceHost", "IncStores.TaskManager.WindowsServiceHost\IncStores.TaskManager.WindowsServiceHost.csproj", "{501BF0E2-BA01-443D-9EFA-4D2878B649D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IncStores.TaskManager.WpfTaskViewer", "IncStores.TaskManager.WpfTaskViewer\IncStores.TaskManager.WpfTaskViewer.csproj", "{BF3D0443-261D-4C0B-9A15-105E771ADD11}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C933F0E5-54FA-45B8-BDFF-242F0D16D711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C933F0E5-54FA-45B8-BDFF-242F0D16D711}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C933F0E5-54FA-45B8-BDFF-242F0D16D711}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C933F0E5-54FA-45B8-BDFF-242F0D16D711}.Release|Any CPU.Build.0 = Release|Any CPU
+		{501BF0E2-BA01-443D-9EFA-4D2878B649D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501BF0E2-BA01-443D-9EFA-4D2878B649D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501BF0E2-BA01-443D-9EFA-4D2878B649D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501BF0E2-BA01-443D-9EFA-4D2878B649D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF3D0443-261D-4C0B-9A15-105E771ADD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3D0443-261D-4C0B-9A15-105E771ADD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3D0443-261D-4C0B-9A15-105E771ADD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3D0443-261D-4C0B-9A15-105E771ADD11}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C933F0E5-54FA-45B8-BDFF-242F0D16D711} = {5802D1F5-B96B-4FEE-98B8-D3508D241938}
+		{501BF0E2-BA01-443D-9EFA-4D2878B649D5} = {CB454245-9EF7-45B4-81BB-AC240975EE47}
+		{BF3D0443-261D-4C0B-9A15-105E771ADD11} = {0515C9D4-52CF-4A10-B88A-39A54EEA05C7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7BB9A1F5-3554-4834-BB58-B0631F953CE8}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.TaskRecipeQueue.TaskRecipeQueueMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:IncStores.TaskManager.WpfTaskViewer.Converters"
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.TaskRecipeQueue"
+             xmlns:extended="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="1000" 
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}"
+             d:DataContext="{d:DesignInstance Type=vm:TaskRecipeQueueMainViewModelDesign, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <converters:TaskRecipeQueueCanCancelConverter x:Key="TaskRecipeQueueCanCancelConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <cc:ViewTitle Grid.Row="0" Title="Task Recipe Queue List" />
+
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- REFRESH BUTTON -->
+            <StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding AutoRefreshLabel}" />
+                <Button Content="REFRESH NOW" Command="{Binding RefreshNowCommand}" />
+
+                <Button Content="ADD REQUEST" Margin="0,5,0,0" Command="{Binding AddRecipeQueueItemRequestCommand}" />
+            </StackPanel>
+            
+            <!-- FILTER -->
+            <cc:ContentSection Grid.Column="1" Header="Filter">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+                    <StackPanel>
+                        <TextBlock Text="Recipe Type:" />
+                        <ComboBox MinWidth="100" Height="25" ItemsSource="{Binding RecipeTypes, Mode=OneWay}" SelectedItem="{Binding SelectedRecipeType}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Status:" />
+                        <ComboBox MinWidth="100" Height="25" ItemsSource="{Binding StatusTypes, Mode=OneWay}" SelectedItem="{Binding SelectedStatusType}" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Start Date Begin:" />
+                        <extended:DateTimePicker Height="25" Value="{Binding StartDateBegin}" Format="ShortDate" TimePickerVisibility="Collapsed" Width="104" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Start Date End:" />
+                        <extended:DateTimePicker Height="25" Value="{Binding StartDateEnd}" Format="ShortDate" TimePickerVisibility="Collapsed" Width="104" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Created Date Start:" />
+                        <extended:DateTimePicker Height="25" Value="{Binding CreatedDateBegin}" Format="ShortDate" TimePickerVisibility="Collapsed" Width="104" />
+                    </StackPanel>
+
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Created Date End:" />
+                        <extended:DateTimePicker Height="25" Value="{Binding CreatedDateEnd}" Format="ShortDate" TimePickerVisibility="Collapsed" Width="104" />
+                    </StackPanel>
+
+                </StackPanel>
+            </cc:ContentSection>
+        </Grid>
+
+        <!-- RESULTS -->
+        <cc:ContentSection Grid.Row="3" Margin="0,10,0,0">
+            <DataGrid Grid.Row="3" ItemsSource="{Binding FilteredTaskRecipeQueueList, Mode=OneWay}" SelectedItem="{Binding SelectedRecipeQueueItem}" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="True" HeadersVisibility="Column" HorizontalScrollBarVisibility="Auto" Margin="0,5,0,0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}" />
+                    <DataGridTextColumn Header="Recipe Type" Binding="{Binding RecipeType}" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" />
+                    <DataGridTextColumn Header="Created By" Binding="{Binding CreatedBy}" />
+                    <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate}" />
+                    <DataGridTextColumn Header="Recipe Data" Binding="{Binding RecipeData}" Width="*" />
+                </DataGrid.Columns>
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditRecipeQueueItemRequestCommand}" />
+                </DataGrid.InputBindings>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Add Recipe Request" Command="{Binding AddRecipeQueueItemRequestCommand}" />
+                        <MenuItem Header="Edit Recipe Request" Command="{Binding EditRecipeQueueItemRequestCommand}" />
+                        <MenuItem Header="Cancel Recipe Request" Command="{Binding CancelRecipeQueueItemRequestCommand}" IsEnabled="{Binding SelectedRecipeQueueItem, Converter={StaticResource TaskRecipeQueueCanCancelConverter}}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+            </DataGrid>
+        </cc:ContentSection>
+    </Grid>
+</UserControl>

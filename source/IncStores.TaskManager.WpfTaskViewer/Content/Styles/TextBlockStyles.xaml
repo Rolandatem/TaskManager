@@ -1,0 +1,45 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="TextBlock.Hyperlink.Foreground" Color="{StaticResource Global.Accent.Color}" />
+
+    <!-- COLLAPSABLE TEXTBLOCK -->
+    <!-- Will collapse if text is null or empty -->
+    <Style x:Key="CollapsableTextBlock" TargetType="TextBlock">
+        <Style.Triggers>
+            <Trigger Property="Text" Value="">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <Trigger Property="Text" Value="{x:Null}">
+                <Setter Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <!-- HYPERLINK TEXTBLOCK -->
+    <!-- Emulates effects of a hyperlink for clickable text. -->
+    <Style x:Key="HyperlinkTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TextBlock.Hyperlink.Foreground}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="#FFF4A13A" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" Duration="0:0:.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation To="{StaticResource Global.Accent.Color}" Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)" Duration="0:0:.25" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

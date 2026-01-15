@@ -1,0 +1,11 @@
+{
+  "SuiteTalkAPI": {
+    "EndPoint": "redacted",
+    "Account": "redacted",
+    "ConsumerKey": "redacted",
+    "ConsumerSecret": "redacted",
+    "TokenId": "redacted",
+    "TokenSecret": "redacted",
+    "Application": "redacted"
+  }
+}

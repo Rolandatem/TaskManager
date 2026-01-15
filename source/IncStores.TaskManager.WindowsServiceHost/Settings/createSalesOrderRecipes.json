@@ -1,0 +1,9 @@
+{
+  "CreateSalesOrderSettings": {
+    "EmailITOnFailedSalesOrderCreation": true,
+    "BatchSetting": {
+      "BatchSize": 1,
+      "BatchMilliSecondsDelay": 2000
+    }
+  }
+}

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="IncStores.TaskManager.WpfTaskViewer.Views.TaskScheduler.TaskSchedulerMainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:IncStores.TaskManager.WpfTaskViewer.ViewModels.TaskScheduler"
+             xmlns:converters="clr-namespace:IncStores.TaskManager.WpfTaskViewer.Converters"
+             xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:TaskSchedulerMainViewModelDesign, IsDesignTimeCreatable=True}" 
+             Background="{StaticResource Global.AppWorkspace.Background}"
+             FontFamily="{StaticResource Roboto}">
+
+    <UserControl.Resources>
+        <converters:IterationDaysShorteningConverter x:Key="iterationDaysShorteningConverter" />
+    </UserControl.Resources>
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <cc:ViewTitle Title="Current Scheduled Tasks" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Add" Command="{Binding AddScheduledTaskCommand, Mode=OneWay}" />
+                <Button Content="Refresh" Margin="10,0,0,0" Command="{Binding RefreshScheduleCommand, Mode=OneWay}" />
+            </StackPanel>
+        </Grid>
+
+        <cc:ContentSection Grid.Row="2" Margin="0,10,0,0">
+            <DataGrid ItemsSource="{Binding TaskSchedule, Mode=OneWay}" SelectedItem="{Binding SelectedTaskSchedule}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" SelectionMode="Single" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick" Command="{Binding EditScheduleCommand, Mode=OneWay}" />
+                    <KeyBinding Key="Delete" Command="{Binding DeleteScheduledTaskCommand}" />
+                </DataGrid.InputBindings>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Edit" Command="{Binding EditScheduleCommand}" />
+                        <MenuItem Header="Delete" Command="{Binding DeleteScheduledTaskCommand}" />
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Schedule Name" Binding="{Binding ScheduleName}" />
+                    <DataGridTextColumn Header="Recipe" Binding="{Binding TaskRecipeType.StringKey}" />
+                    <DataGridTextColumn Header="Frequency" Binding="{Binding Frequency}" />
+                    <DataGridTextColumn Header="Iteration Days" Binding="{Binding IterationDays, Converter={StaticResource iterationDaysShorteningConverter}}" />
+                    <DataGridTextColumn Header="Start Time" Binding="{Binding StartTime, StringFormat=\{0:g\}}"/>
+                    <DataGridTextColumn Header="End Time" Binding="{Binding EndTime, StringFormat=\{0:g\}}"/>
+                    <DataGridTextColumn Header="Last Ran Time" Binding="{Binding LastRanTime, StringFormat=\{0:g\}}"/>
+                    <DataGridTextColumn Header="Created By" Binding="{Binding CreatedBy}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </cc:ContentSection>
+    </Grid>
+    
+</UserControl>

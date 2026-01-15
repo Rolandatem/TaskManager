@@ -1,0 +1,36 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--...........................................................................................
+    █ COMMON APP COLORS
+    ............................................................................................-->
+    <Color x:Key="Global.Text.Color">#FFD4D4D4</Color>
+    <Color x:Key="Global.TextInput.Color">#BCBCBC</Color>
+    <Color x:Key="Global.TextInput.Border.Color">#FFABADB3</Color>
+    <Color x:Key="Global.TitleBar.Color">#FF161D25</Color>
+    <Color x:Key="Global.Main.Color">#FF273241</Color>
+    <Color x:Key="Global.Main.Light.Color">#FF303D4D</Color>
+    <Color x:Key="Global.Main.Lighter.Color">#FF4F647D</Color>
+    <Color x:Key="Global.Main.Dark.Color">#FF1E2734</Color>
+    <Color x:Key="Global.Main.Darker.Color">#FF0D1015</Color>
+    <Color x:Key="Global.Accent.Color">#22A652</Color>
+    <Color x:Key="Global.SecondaryAccent.Color">#FF57D0ED</Color>
+
+    <!--...........................................................................................
+    █ GLOBAL BRUSHES
+    ............................................................................................-->
+
+    <!-- COMMON TEXT FOREGROUND -->
+    <SolidColorBrush x:Key="Global.Text.Foreground" Color="{StaticResource Global.Text.Color}" />
+    
+    <!-- COMMON TEXT INPUT BORDER -->
+    <SolidColorBrush x:Key="Global.TextInput.Border" Color="{StaticResource Global.TextInput.Border.Color}" />
+
+    <!-- WINDOW CHROME AND STATUS BAR -->
+    <SolidColorBrush x:Key="Global.WindowChrome.Background" Color="{StaticResource Global.TitleBar.Color}" />
+    <SolidColorBrush x:Key="Global.StatusBar.Background" Color="{StaticResource Global.TitleBar.Color}" />
+
+    <!-- BASIC APP WORKSPACE -->
+    <SolidColorBrush x:Key="Global.AppWorkspace.Background" Color="{StaticResource Global.Main.Color}" />
+
+</ResourceDictionary>

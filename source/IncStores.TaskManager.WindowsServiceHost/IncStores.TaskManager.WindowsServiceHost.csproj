@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>dotnet-IncStores.TaskManager.WindowsServiceHost-297C4CA7-8E75-4803-AC53-4E6EC78C8408</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Incstores.EntityActivityLogger" Version="5.0.5" />
+    <PackageReference Include="Incstores.Notification" Version="5.0.9" />
+    <PackageReference Include="Incstores.Shipping.Tracking.Load" Version="2.0.8" />
+    <PackageReference Include="Incstores.Shipping.Tracking.Load.Recipes" Version="2.1.6" />
+    <PackageReference Include="Incstores.Shipping.Tracking.Process" Version="5.0.3" />
+    <PackageReference Include="Incstores.Shipping.Tracking.Process.Recipes" Version="5.0.4" />
+    <PackageReference Include="IncStores.TaskManager.Core" Version="5.0.2" />
+    <PackageReference Include="IncStores.TaskManager.GeneralRecipes" Version="5.0.17" />
+    <PackageReference Include="MicroKnights.Log4NetHelper" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.WindowsServices" Version="5.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IncStores.TaskManager.RecipeRunnerService\IncStores.TaskManager.RecipeRunnerService.csproj" />
+  </ItemGroup>
+</Project>

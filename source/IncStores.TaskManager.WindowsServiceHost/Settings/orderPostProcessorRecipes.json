@@ -1,0 +1,14 @@
+{
+  "PostProcessorSettings": {
+    "LockOrdersCompletedBetweenStartMinutesAgo": 60,
+    "LockOrdersCompletedBetweenEndMinutesAgo": 15,
+    "EmailITOnUnSuccessfulPostProcess": true,
+    "EmailITOnUnSuccessfulSetStatus": true,
+    "EmailITOnUnSuccessfulValidation": true,
+    "ExcludedPaymentTypes": "10,11,13,20,22,25,28,64,65,16,66,67,68",
+    "BatchSetting": {
+      "BatchSize": 1,
+      "BatchMilliSecondsDelay": 2000
+    }
+  }
+}

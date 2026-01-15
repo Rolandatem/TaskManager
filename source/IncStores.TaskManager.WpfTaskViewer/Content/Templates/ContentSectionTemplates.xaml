@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cc="clr-namespace:IncStores.TaskManager.WpfTaskViewer.CustomControls"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="ContentSection.Background" Color="{StaticResource Global.Main.Dark.Color}" />
+
+    <!-- BASE -->
+    <ControlTemplate x:Key="BaseContentSectionControlTemplate" TargetType="{x:Type cc:ContentSection}">
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" 
+                CornerRadius="{TemplateBinding CornerRadius}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                Width="{TemplateBinding Width}" MinWidth="{TemplateBinding MinWidth}">
+            <Border.Effect>
+                <DropShadowEffect />
+            </Border.Effect>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <ContentPresenter Grid.Row="0" Content="{TemplateBinding Header}">
+                    <ContentPresenter.Resources>
+                        <DataTemplate DataType="{x:Type sys:String}">
+                            <TextBlock Text="{Binding}" FontWeight="Bold" Foreground="{StaticResource Global.Text.Foreground}" />
+                        </DataTemplate>
+                    </ContentPresenter.Resources>
+                </ContentPresenter>
+                <ContentPresenter Grid.Row="1" Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <Style x:Key="BaseContentSectionStyle" TargetType="{x:Type cc:ContentSection}">
+        <Setter Property="Background" Value="{StaticResource ContentSection.Background}" />
+        <Setter Property="BorderBrush" Value="Black" />
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="15,10" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Foreground" Value="{StaticResource Global.Text.Foreground}" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
+        <Setter Property="Template" Value="{StaticResource BaseContentSectionControlTemplate}" />
+    </Style>
+
+    <Style TargetType="{x:Type cc:ContentSection}" BasedOn="{StaticResource BaseContentSectionStyle}" />
+
+</ResourceDictionary>

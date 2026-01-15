@@ -1,0 +1,30 @@
+{
+  "NetSuiteSettings": {
+    "EmailITOnUnSuccessfulSync": true,
+    "SyncManufacturerSettings": {
+      "BatchSize": 1000, 
+      "BatchMilliSecondsDelay": 2000 
+    },
+    "SyncVariantColorSettings": {
+      "BatchSize": 1000, 
+      "BatchMilliSecondsDelay": 2000 
+    },
+    "SyncPaymentMethodSettings": {
+      "BatchSize": 1000,
+      "BatchMilliSecondsDelay": 2000
+    },
+    "SyncProductCategorySettings": {
+      "BatchSize": 1000,
+      "BatchMilliSecondsDelay": 2000
+    },
+    "SyncSalesOrderSettings": {
+      "BatchSize": 1000,
+      "BatchMilliSecondsDelay": 2000
+    },
+    "SyncKitSettings": {
+      "BatchSize": 1000,
+      "BatchMilliSecondsDelay": 2000
+    }
+
+  }
+}

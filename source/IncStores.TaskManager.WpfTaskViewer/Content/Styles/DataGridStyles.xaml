@@ -1,0 +1,96 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!-- BRUSHES -->
+    <SolidColorBrush x:Key="DataGrid.Background" Color="#FF999999" />
+    <SolidColorBrush x:Key="DataGrid.Row.Background" Color="GhostWhite" />
+    <SolidColorBrush x:Key="DataGrid.AlternatingRow.Background" Color="#FFCFF1FA" />
+    <SolidColorBrush x:Key="DataGrid.Row.Hover.Background" Color="{StaticResource Global.Accent.Color}" Opacity=".5" />
+    
+    <LinearGradientBrush x:Key="DataGrid.HeaderRow.Background" StartPoint=".5,0" EndPoint=".5,1">
+        <GradientStop Color="#FF094AAD" Offset="0.24" />
+        <GradientStop Color="#FF0745AA" Offset="0.98" />
+        <GradientStop Color="#FF286ED1" Offset="0.5" />
+        <GradientStop Color="#FF094AAD" Offset=".076" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="DataGrid.HeaderRow.Foreground" Color="GhostWhite" />
+    <SolidColorBrush x:Key="DataGrid.HeaderCell.Highlight.Background" Color="{StaticResource Global.SecondaryAccent.Color}" Opacity=".5" />
+    <SolidColorBrush x:Key="DataGrid.HeaderCell.Highlight.Border" Color="Red" />
+
+    <!-- GLOBAL -->
+    <Style TargetType="{x:Type DataGrid}">
+        <Setter Property="Background" Value="{StaticResource DataGrid.Background}" />
+        <Setter Property="RowBackground" Value="{StaticResource DataGrid.Row.Background}" />
+        <Setter Property="AlternatingRowBackground" Value="{StaticResource DataGrid.AlternatingRow.Background}" />
+    </Style>
+
+    <Style TargetType="{x:Type DataGridRow}">
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource DataGrid.Row.Hover.Background}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Thumb}" x:Key="ThumbStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Rectangle Width="1" Stroke="Transparent" Cursor="SizeWE"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Foreground" Value="{StaticResource DataGrid.HeaderRow.Foreground}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border x:Name="BackgroundBorder" 
+                            BorderThickness="0,0,0,1"
+                            Background="{StaticResource DataGrid.HeaderRow.Background}"
+                            BorderBrush="Black"
+                            Grid.ColumnSpan="2"/>
+                        <ContentPresenter Margin="10,5,10,5" VerticalAlignment="Center"/>
+                        <Path x:Name="SortArrow" Grid.Column="1"
+                            Visibility="Collapsed" Data="M 0,0 L 1,0 0.5,1 z" Stretch="Fill"
+                            Width="8" Height="6" Fill="{StaticResource DataGrid.HeaderRow.Foreground}" Margin="0,0,8,0"
+                            VerticalAlignment="Center" RenderTransformOrigin="0.5, 0.4"/>
+                        <Rectangle Width="1" Fill="Black" HorizontalAlignment="Right" Grid.ColumnSpan="2"/>
+                        <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ThumbStyle}"/>
+                        <Thumb x:Name="PART_RightHeaderGripper" Grid.Column="1" HorizontalAlignment="Right" Style="{StaticResource ThumbStyle}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource DataGrid.HeaderCell.Highlight.Background}"/>
+                            <Setter TargetName="BackgroundBorder" Property="BorderBrush" Value="{StaticResource DataGrid.HeaderCell.Highlight.Border}"/>
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Ascending">
+                            <Setter TargetName="SortArrow" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="SortArrow" Property="RenderTransform">
+                                <Setter.Value>
+                                    <RotateTransform Angle="180"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="SortDirection" Value="Descending">
+                            <Setter TargetName="SortArrow" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="DisplayIndex" Value="0">
+                            <Setter TargetName="PART_LeftHeaderGripper" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
